@@ -6,7 +6,7 @@ import (
 )
 
 type LogEntry struct {
-	Timestamp time.Time `json:"timestamp"`
+	TimeStamp time.Time `json:"timestamp"`
 	Level     string    `json:"level"`
 	Message   string    `json:"message"`
 	Source    string    `json:"source"`
@@ -16,6 +16,10 @@ type LogEntry struct {
 type InMemoryStorage struct {
 	mu   sync.Mutex
 	logs []LogEntry
+}
+
+func NewInMemoryStorage() *InMemoryStorage {
+	return &InMemoryStorage{}
 }
 
 func (s *InMemoryStorage) AddLog(entry LogEntry) {
